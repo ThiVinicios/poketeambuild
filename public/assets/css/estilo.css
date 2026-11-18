@@ -1,0 +1,1553 @@
+/* ============================================================
+   TeamBuild - estilos do site
+   Organização: 1) base  2) topo e menu  3) botões e campos
+   4) landing  5) login/cadastro  6) pokédex  7) cards
+   8) montador  9) equipes  10) admin  11) celular
+   ============================================================ */
+
+/* ---------- 1) Base e cores ---------- */
+:root {
+  --vermelho: #dc2626;
+  --vermelho-escuro: #991b1b;
+  --escuro: #0f172a;
+  --cinza-texto: #475569;
+  --cinza-borda: #e2e8f0;
+  --fundo: #f8fafc;
+  --creme: #fffaf1;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+/* Ninguém consegue selecionar texto com o mouse (exceto dentro dos campos de digitar). */
+* {
+  -webkit-user-select: none;
+  user-select: none;
+}
+input,
+textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}
+img {
+  -webkit-user-drag: none;
+}
+
+/* Barra de rolagem sempre presente: impede a página de "pular" quando o conteúdo muda. */
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  color: var(--escuro);
+  background: var(--fundo);
+  line-height: 1.5;
+}
+[hidden] {
+  display: none !important;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+h1 {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.etiqueta-texto {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vermelho);
+  margin-bottom: 6px;
+}
+.destaque {
+  color: var(--vermelho);
+}
+
+/* ---------- 2) Topo e menu ---------- */
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid var(--cinza-borda);
+}
+.topo-linha {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.logo b {
+  color: var(--vermelho);
+}
+.pokebola {
+  width: 34px;
+  height: 34px;
+  border: 3px solid var(--escuro);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(#e31b23 0 43%, var(--escuro) 43% 57%, #fff 57%);
+}
+.pokebola span {
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--escuro);
+  border-radius: 50%;
+  background: #fff;
+}
+
+.menu a {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--cinza-texto);
+  transition: color 0.2s;
+}
+.menu a:hover,
+.menu a.ativo {
+  color: var(--vermelho);
+}
+.menu-desktop {
+  display: flex;
+  gap: 32px;
+}
+.menu-mobile {
+  display: none;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px 20px;
+  border-top: 1px solid #f1f5f9;
+}
+.menu-mobile a {
+  white-space: nowrap;
+}
+.topo-acoes {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ola {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--cinza-texto);
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.link-simples {
+  font-weight: 700;
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+/* ---------- 3) Botões, campos e avisos ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 22px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.15s,
+    background 0.15s;
+}
+.btn-primario {
+  background: var(--vermelho);
+  color: #fff;
+  box-shadow: 0 5px 0 var(--vermelho-escuro);
+}
+.btn-primario:hover {
+  background: #ef4444;
+  transform: translateY(-2px);
+}
+.btn-primario:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+.btn-secundario {
+  background: #fff;
+  color: var(--escuro);
+  border: 1px solid var(--cinza-borda);
+}
+.btn-secundario:hover {
+  background: var(--fundo);
+}
+.btn-pequeno {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+.btn-total {
+  width: 100%;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.texto-perigo {
+  color: var(--vermelho);
+}
+
+.campo {
+  width: 100%;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font: inherit;
+  font-size: 14px;
+  background: #fff;
+  outline: none;
+}
+.campo:focus {
+  border-color: #f87171;
+  box-shadow: 0 0 0 4px #fee2e2;
+}
+
+.aviso {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.aviso-ok {
+  background: #ecfdf5;
+  color: #047857;
+}
+.aviso-erro {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+.erro-js {
+  color: #b91c1c;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.painel {
+  background: #fff;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 24px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.painel-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.link-pequeno {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--vermelho);
+}
+.vazio,
+.vazio-pequeno {
+  text-align: center;
+  color: var(--cinza-texto);
+}
+.vazio {
+  border: 2px dashed #cbd5e1;
+  border-radius: 24px;
+  padding: 70px 20px;
+  background: #fff;
+  margin-top: 24px;
+}
+.vazio .btn {
+  margin-top: 16px;
+}
+.vazio-pequeno {
+  font-size: 14px;
+  padding: 12px;
+}
+
+/* Janela de confirmação (sair da conta) */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.6);
+}
+.modal-caixa {
+  background: #fff;
+  border-radius: 24px;
+  padding: 28px;
+  width: 100%;
+  max-width: 380px;
+}
+.modal-caixa h2 {
+  margin-bottom: 8px;
+}
+.modal-caixa p {
+  color: var(--cinza-texto);
+  font-size: 14px;
+}
+.modal-botoes {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+.modal-botoes .btn {
+  flex: 1;
+}
+
+/* ---------- 4) Landing page ---------- */
+.hero {
+  position: relative;
+  background: var(--creme);
+  border-bottom: 1px solid var(--cinza-borda);
+  background-image: radial-gradient(#e2d9c8 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.hero-grade {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 48px;
+  align-items: center;
+  min-height: 600px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+.etiqueta {
+  display: inline-block;
+  background: #fff;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  border-radius: 99px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+.hero h1 {
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  line-height: 0.98;
+}
+.hero-texto {
+  margin-top: 24px;
+  max-width: 500px;
+  font-size: 1.1rem;
+  color: var(--cinza-texto);
+}
+.hero-botoes {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.hero-arte {
+  position: relative;
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.hero-bola {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  box-shadow: 0 35px 80px rgba(127, 29, 29, 0.25);
+  background: radial-gradient(
+    circle at 36% 28%,
+    #fff 0 6%,
+    #fca5a5 7% 18%,
+    #ef4444 19% 44%,
+    #b91c1c 45% 47%,
+    #111827 48% 53%,
+    #fff 54% 74%,
+    #e2e8f0 75%
+  );
+}
+.hero-arte img {
+  position: absolute;
+  left: 16%;
+  top: 8%;
+  width: 68%;
+  height: auto;
+  filter: drop-shadow(0 30px 15px rgba(15, 23, 42, 0.28));
+}
+
+.secao {
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+.secao h2 {
+  font-size: 2.2rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 40px;
+}
+.grade-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.recurso {
+  background: #fff;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 24px;
+  padding: 28px;
+}
+.recurso-num {
+  float: right;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+.recurso h3 {
+  margin-top: 48px;
+  font-size: 1.25rem;
+}
+.recurso p {
+  margin-top: 10px;
+  color: var(--cinza-texto);
+}
+.chamada {
+  background: var(--escuro);
+  color: #fff;
+  text-align: center;
+  padding: 80px 20px;
+}
+.chamada h2 {
+  font-size: 2.2rem;
+}
+.chamada p {
+  color: #94a3b8;
+  margin: 14px auto 28px;
+  max-width: 460px;
+}
+
+/* ---------- 5) Login e cadastro ---------- */
+.pagina-auth {
+  background: var(--creme);
+}
+.auth {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+}
+.auth-invertido {
+  grid-template-columns: 1.1fr 0.9fr;
+}
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+.auth-form .logo {
+  align-self: center;
+  margin-bottom: 32px;
+}
+.auth-caixa {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 24px;
+  padding: 36px;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.1);
+}
+.auth-caixa h1 {
+  font-size: 1.9rem;
+}
+.auth-sub {
+  color: var(--cinza-texto);
+  font-size: 14px;
+  margin: 10px 0 20px;
+}
+.auth-caixa label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.auth-caixa label .campo {
+  margin-top: 8px;
+  font-weight: 400;
+}
+.auth-rodape {
+  text-align: center;
+  font-size: 14px;
+  color: var(--cinza-texto);
+  margin-top: 22px;
+}
+.auth-rodape a {
+  color: var(--vermelho);
+  font-weight: 700;
+}
+.auth-arte {
+  display: grid;
+  place-items: center;
+}
+.auth-arte-escura {
+  background: var(--escuro);
+}
+.auth-arte-vermelha {
+  background: var(--vermelho);
+}
+.auth-arte img {
+  max-width: 80%;
+  height: auto;
+  filter: drop-shadow(0 30px 20px rgba(0, 0, 0, 0.4));
+}
+
+/* ---------- 6) Pokédex ---------- */
+.cabecalho-pagina {
+  background: var(--creme);
+  border-bottom: 1px solid var(--cinza-borda);
+  padding: 56px 0;
+}
+.cabecalho-pagina p {
+  margin-top: 14px;
+  max-width: 640px;
+  color: var(--cinza-texto);
+}
+.filtros {
+  position: sticky;
+  top: 72px;
+  z-index: 30;
+  background: #fff;
+  border-bottom: 1px solid var(--cinza-borda);
+  padding: 20px 0;
+}
+.filtros-linha {
+  display: flex;
+  gap: 12px;
+}
+.filtros-linha .campo {
+  flex: 1;
+  min-width: 0;
+  height: 46px;
+}
+/* Largura fixa no contador: assim o campo de busca não muda de tamanho enquanto você digita. */
+.contador {
+  flex: 0 0 176px;
+  height: 46px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--cinza-texto);
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.chip {
+  border: 0;
+  border-radius: 99px;
+  padding: 8px 16px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #f1f5f9;
+  color: var(--cinza-texto);
+}
+.chip:hover {
+  background: var(--cinza-borda);
+}
+.chip.ativo {
+  background: var(--escuro);
+  color: #fff;
+}
+/* Altura mínima: a página não encolhe quando poucos Pokémon aparecem. */
+.lista-pokedex {
+  min-height: 900px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.grade-pokemon {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+/* ---------- 7) Cards de Pokémon (todos do mesmo tamanho) ---------- */
+.card-pokemon {
+  position: relative;
+  height: 270px;
+  min-height: 270px;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+}
+.card-pokemon:hover {
+  transform: translateY(-4px);
+  border-color: #fecaca;
+}
+.card-numero {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #cbd5e1;
+}
+.card-foto {
+  flex-shrink: 0;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  background: #f8fafc;
+  display: grid;
+  place-items: center;
+}
+.card-foto img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  image-rendering: auto;
+}
+.card-pokemon h3 {
+  margin-top: 10px;
+  width: 100%;
+  flex: 0 0 auto;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.25;
+  white-space: normal;
+  overflow: visible;
+  overflow-wrap: anywhere;
+}
+.card-tipos {
+  margin-top: 8px;
+  width: 100%;
+  min-height: 26px;
+  height: auto;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  overflow: visible;
+}
+
+/* Versão menor usada no montador e nos detalhes da equipe */
+.card-pokemon.compacto {
+  height: 220px;
+  min-height: 220px;
+  padding: 10px 12px;
+}
+.compacto .card-foto {
+  width: 104px;
+  height: 104px;
+}
+.compacto .card-foto img {
+  width: 100px;
+  height: 100px;
+}
+.compacto h3 {
+  margin-top: 7px;
+  font-size: 0.875rem;
+}
+.compacto .card-tipos {
+  margin-top: 5px;
+  min-height: 22px;
+  gap: 4px;
+}
+
+/* Selo colorido de tipo */
+.tipo {
+  border-radius: 99px;
+  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  height: 22px;
+  line-height: 14px;
+}
+.tipo-normal {
+  background: #8b8b76;
+}
+.tipo-fire {
+  background: #ef5c35;
+}
+.tipo-water {
+  background: #3f82e5;
+}
+.tipo-electric {
+  background: #e8b923;
+  color: #573f00;
+}
+.tipo-grass {
+  background: #65a844;
+}
+.tipo-ice {
+  background: #5fc4cc;
+}
+.tipo-fighting {
+  background: #bd3b35;
+}
+.tipo-poison {
+  background: #9250a0;
+}
+.tipo-ground {
+  background: #b78b43;
+}
+.tipo-flying {
+  background: #7897da;
+}
+.tipo-psychic {
+  background: #e94d78;
+}
+.tipo-bug {
+  background: #91a51a;
+}
+.tipo-rock {
+  background: #9e842b;
+}
+.tipo-ghost {
+  background: #66578f;
+}
+.tipo-dragon {
+  background: #6241cf;
+}
+.tipo-dark {
+  background: #55443b;
+}
+.tipo-steel {
+  background: #8796a8;
+}
+.tipo-fairy {
+  background: #e58bb5;
+}
+
+
+
+/* ---------- 8) Montador de equipes ---------- */
+.pagina-montar,
+.pagina-equipes,
+.pagina-admin {
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+.montar-grade {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 28px;
+  align-items: start;
+}
+.contagem {
+  background: #f1f5f9;
+  color: var(--cinza-texto);
+  border-radius: 99px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.contagem.cheio {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.slots {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+.slot {
+  position: relative;
+  height: auto;
+  min-height: 154px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 2px dashed var(--cinza-borda);
+  border-radius: 16px;
+  background: #f8fafc;
+  cursor: pointer;
+  font: inherit;
+  padding: 8px 4px;
+}
+.slot:disabled {
+  cursor: default;
+}
+.slot:not(:disabled):hover {
+  border-color: #fca5a5;
+}
+.slot-foto {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.slot-foto img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  image-rendering: auto;
+}
+.slot-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+  width: 100%;
+}
+.slot-nome {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--escuro);
+  text-align: center;
+  white-space: normal;
+  overflow: visible;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+  line-height: 1.2;
+}
+.slot-tipos {
+  display: flex;
+  width: 100%;
+  gap: 5px;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+}
+.slot-tipo-icone {
+  display: block;
+  width: 19px;
+  height: 19px;
+  object-fit: contain;
+  flex: 0 0 19px;
+  image-rendering: auto;
+}
+.slot-mais {
+  font-size: 28px;
+  color: #cbd5e1;
+}
+.slot-x {
+  cursor: pointer;
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+.botoes-linha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+#nome-equipe {
+  margin-top: 20px;
+}
+
+.busca-montar {
+  margin-top: 28px;
+}
+.grade-escolha {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+.escolha {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 220px;
+  min-height: 220px;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: 18px;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+.escolha.ativo {
+  box-shadow: 0 0 0 3px #f87171;
+}
+.marca {
+  display: none;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--vermelho);
+  color: #fff;
+  font-size: 13px;
+  line-height: 24px;
+  text-align: center;
+}
+.escolha.ativo .marca {
+  display: block;
+}
+
+.lateral {
+  display: flex;
+  flex-direction: column;
+  /* Os painéis permanecem no fluxo normal e saem da tela ao rolar a página. */
+  position: static;
+  align-self: start;
+  overflow: visible;
+  max-height: none;
+}
+.lateral > .analise,
+.lateral > .painel {
+  flex: none;
+  max-height: none;
+  overflow: visible;
+}
+.mini-equipe {
+  border: 1px solid var(--cinza-borda);
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+.mini-equipe-topo {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.mini-equipe h3 {
+  font-size: 1rem;
+}
+.mini-equipe small {
+  color: #64748b;
+}
+.mini-acoes {
+  display: flex;
+  gap: 4px;
+}
+.btn-icone {
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--cinza-texto);
+}
+.btn-icone:hover {
+  background: #f1f5f9;
+}
+.btn-icone.perigo {
+  color: var(--vermelho);
+}
+.mini-fotos {
+  display: flex;
+  margin-top: 10px;
+}
+.mini-fotos img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: 2px solid #fff;
+  margin-right: -8px;
+  image-rendering: auto;
+}
+
+/* Quadro escuro da análise (montador e equipes) */
+/* Contêiner principal da análise */
+.analise {
+  background: var(--escuro);
+  color: #fff;
+  border-radius: 24px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Título h2 */
+.analise h2 {
+  font-size: 1rem;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+/* Texto vazio */
+.analise-vazia {
+  color: #94a3b8;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+/* Bloco (Defesa / Cobertura) */
+.analise-bloco {
+  margin-bottom: 4px;
+}
+.analise-titulo-bloco {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.analise-icone {
+  font-size: 14px;
+}
+.analise-subtitulo {
+  font-size: 11px;
+  color: #64748b;
+  margin-bottom: 10px;
+}
+
+/* Grade de células de tipo */
+.tipo-grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px;
+}
+.tipo-cell {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+/* Chip de tipo (grade) */
+.chip-tipo {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff !important;
+  white-space: nowrap;
+  width: fit-content;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Pokémon dentro da célula */
+.tipo-cell-pokemons {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.poke-entry {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px 6px;
+  font-size: 12px;
+  line-height: 1.3;
+}
+.nome-poke {
+  color: #fff !important;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  font-weight: 700;
+  font-size: 12px;
+}
+.poke-mult {
+  flex: 0 0 auto;
+  min-width: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+.mult-4x {
+  background: rgba(239,68,68,0.25);
+  color: #fca5a5;
+}
+.mult-2x {
+  background: rgba(251,191,36,0.2);
+  color: #fcd34d;
+}
+
+/* Análise compacta em grade, inspirada na referência visual. */
+.analise {
+  background: var(--escuro);
+  color: #fff;
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+.analise h2 { font-size: 1rem; margin-bottom: 12px; color: #fff; }
+.analise-bloco { margin-bottom: 14px; }
+.analise-titulo-bloco {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 15px; font-weight: 700; color: #f1f5f9;
+  margin-bottom: 10px;
+}
+.analise-icone { font-size: 15px; }
+.analise-grade-tipos {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  column-gap: 7px;
+  row-gap: 8px;
+}
+.analise-tipo-item {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  cursor: help;
+  border-radius: 6px;
+  outline-offset: 2px;
+}
+.analise-tipo-item .tipo {
+  width: 100%;
+  height: auto;
+  min-height: 21px;
+  padding: 3px 4px;
+  border-radius: 6px;
+  text-align: center;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 11px;
+  line-height: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.analise-pontuacao { font-size: 13px; line-height: 16px; font-weight: 700; }
+.pontuacao-positiva { color: #22c55e; }
+.pontuacao-negativa { color: #f87171; }
+.pontuacao-neutra { color: #e2e8f0; }
+.analise-bloco-ofensiva { margin-top: 15px; }
+.analise-vazia { color: #94a3b8; font-size: 13px; line-height: 1.6; }
+@media (max-width: 520px) {
+  .analise-grade-tipos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Cor do texto do Pokémon por tipo (versão texto, sem fundo) */
+.tipo-texto-normal   { color: #9ca3af; }
+.tipo-texto-fire     { color: #fb923c; }
+.tipo-texto-water    { color: #60a5fa; }
+.tipo-texto-electric { color: #fbbf24; }
+.tipo-texto-grass    { color: #4ade80; }
+.tipo-texto-ice      { color: #67e8f9; }
+.tipo-texto-fighting { color: #f97316; }
+.tipo-texto-poison   { color: #c084fc; }
+.tipo-texto-ground   { color: #d97706; }
+.tipo-texto-flying   { color: #93c5fd; }
+.tipo-texto-psychic  { color: #f472b6; }
+.tipo-texto-bug      { color: #a3e635; }
+.tipo-texto-rock     { color: #a8a29e; }
+.tipo-texto-ghost    { color: #a78bfa; }
+.tipo-texto-dragon   { color: #818cf8; }
+.tipo-texto-dark     { color: #a1a1aa; }
+.tipo-texto-steel    { color: #94a3b8; }
+.tipo-texto-fairy    { color: #f0abfc; }
+
+
+
+/* ---------- 9) Minhas equipes ---------- */
+.intro {
+  color: var(--cinza-texto);
+  margin: 12px 0 32px;
+  max-width: 640px;
+}
+.grade-equipes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.equipe-card {
+  text-align: left;
+  background: #fff;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 24px;
+  padding: 20px;
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.equipe-card:hover {
+  transform: translateY(-2px);
+}
+.equipe-card.ativo {
+  border-color: #f87171;
+  box-shadow: 0 0 0 4px #fee2e2;
+}
+.equipe-card-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+.equipe-card h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.equipe-fotos {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  margin: 16px 0;
+}
+.equipe-fotos img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #f8fafc;
+  image-rendering: auto;
+}
+.ver-mais {
+  display: block;
+  margin-top: 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--vermelho);
+}
+.detalhe {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 24px;
+  align-items: start;
+  scroll-margin-top: 90px;
+}
+.grade-detalhe {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+/* ---------- 10) Administração ---------- */
+.indicadores {
+  margin: 28px 0;
+}
+.indicador {
+  background: #fff;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 18px;
+  padding: 20px;
+}
+.indicador b {
+  display: block;
+  font-size: 2rem;
+}
+.indicador span {
+  color: #64748b;
+  font-size: 14px;
+}
+.admin-grade {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.tabela-rolagem {
+  overflow-x: auto;
+}
+.tabela-alta {
+  max-height: 560px;
+  overflow-y: auto;
+}
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.tabela th {
+  text-align: left;
+  font-size: 12px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 8px;
+  border-bottom: 1px solid var(--cinza-borda);
+}
+.tabela td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+.tabela .tipo {
+  margin-right: 4px;
+}
+.acoes {
+  white-space: nowrap;
+}
+.acoes .form-linha,
+.acoes a {
+  display: inline-block;
+}
+.papel {
+  border-radius: 99px;
+  padding: 3px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: #f1f5f9;
+  color: var(--cinza-texto);
+}
+.papel-admin {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.formulario-admin {
+  max-width: 520px;
+  margin-top: 20px;
+}
+.formulario-admin label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.formulario-admin .campo {
+  margin-top: 8px;
+  font-weight: 400;
+}
+.pagina-admin h1 {
+  margin-bottom: 4px;
+}
+
+/* ---------- 11) Celular e tablet ---------- */
+@media (max-width: 1100px) {
+  .montar-grade,
+  .detalhe {
+    grid-template-columns: 1fr;
+  }
+  .lateral {
+    position: static;
+  }
+  .grade-pokemon,
+  .grade-escolha {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .admin-grade {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 800px) {
+  .menu-desktop,
+  .ola {
+    display: none;
+  }
+  .menu-mobile {
+    display: flex;
+  }
+  .hero-grade,
+  .auth,
+  .auth-invertido {
+    grid-template-columns: 1fr;
+  }
+  .hero-grade {
+    min-height: auto;
+  }
+  .auth-arte {
+    display: none;
+  }
+  .grade-3,
+  .grade-equipes {
+    grid-template-columns: 1fr;
+  }
+  .grade-pokemon {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .grade-escolha {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .slots {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  /* No celular o filtro rola junto com a página para sobrar espaço na tela. */
+  .filtros {
+    position: static;
+  }
+  .filtros-linha {
+    flex-direction: column;
+  }
+  .contador {
+    flex-basis: auto;
+  }
+}
+@media (max-width: 520px) {
+  .grade-pokemon {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grade-detalhe {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .card-pokemon {
+    padding: 14px;
+  }
+}
+
+/* ---------- Modais de confirmação (incompleta / excluir) ---------- */
+/* Reutilizam .modal base; [hidden] esconde com display:none */
+.modal[hidden] {
+  display: none;
+}
+#modal-incompleta,
+#modal-excluir {
+  z-index: 200;
+}
+.modal-titulo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--escuro);
+}
+.modal-incompleta-msg,
+.modal-excluir-msg {
+  font-size: 14px;
+  color: var(--cinza-texto);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* ---------- Mini equipe — botões alinhados ---------- */
+.mini-acoes .btn {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Resultado vazio da busca no montador */
+.busca-sem-resultados {
+  margin-top: 16px;
+  padding: 14px 18px;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--cinza-texto);
+  font-size: 13px;
+  text-align: center;
+}
+
+
+/* Tipagens centralizadas nos Pokémon indicados na Pokédex. */
+.card-pokemon.tipagens-centralizadas .card-tipos {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.card-pokemon.tipagens-centralizadas .tipo {
+  flex: 0 0 auto;
+}
+
+/* Mini-card de efetividade ao passar o mouse sobre uma tipagem. */
+.analise-tooltip-flutuante {
+  position: fixed;
+  z-index: 99999;
+  max-width: calc(100vw - 24px);
+  padding: 10px 11px;
+  border: 1px solid rgba(148,163,184,.28);
+  border-radius: 9px;
+  background: #252525;
+  color: #f8fafc;
+  box-shadow: 0 9px 28px rgba(0,0,0,.48);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+}
+.analise-tooltip-flutuante.visivel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: none;
+  transform: translateY(0);
+}
+.analise-tooltip-titulo { display:flex; align-items:center; gap:4px; margin-bottom:7px; font-size:12px; line-height:1.4; }
+.analise-tooltip-titulo strong { font-weight:800; }
+.analise-tooltip-linha { display:flex; align-items:center; gap:7px; min-height:23px; font-size:12px; }
+.analise-tooltip-linha img { width:25px; height:25px; object-fit:contain; flex:0 0 25px; }
+.analise-tooltip-linha span { flex:1; min-width:0; }
+.analise-tooltip-linha strong { min-width:38px; text-align:right; font-size:12px; }
+.analise-tooltip-linha small { color:#a1a1aa; font-size:10px; }
+.analise-tooltip-linha .mult-0 { color:#a78bfa; }
+.analise-tooltip-linha .mult-025, .analise-tooltip-linha .mult-05 { color:#4ade80; }
+.analise-tooltip-linha .mult-1 { color:#e5e7eb; }
+.analise-tooltip-linha .mult-2 { color:#facc15; }
+.analise-tooltip-linha .mult-4 { color:#fb7185; }
+@media (prefers-reduced-motion: reduce) { .analise-tooltip-flutuante { transition:none; } }
