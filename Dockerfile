@@ -1,11 +1,21 @@
-﻿FROM php:8.2-apache
+﻿FROM ubuntu:22.04
 
-RUN docker-php-ext-install pdo pdo_mysql
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    apache2 \
+    php8.1 \
+    php8.1-mysql \
+    libapache2-mod-php8.1 \
+    && a2enmod rewrite \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY . /var/www/html/
 
-RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf /etc/apache2/apache2.conf
+RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
 
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 EXPOSE 80
+
+CMD ["apache2ctl", "-D", "FOREGROUND"]
